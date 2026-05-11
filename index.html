@@ -3,7 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redirecionando...</title>
+  <title>Redirecionando para o Instagram...</title>
+
+  <!-- Fallback sem JavaScript -->
+  <meta http-equiv="refresh" content="4;url=https://www.instagram.com/phaellacosta7/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="@phaellacosta7 no Instagram" />
+  <meta property="og:description" content="Acesse o perfil oficial no Instagram de @phaellacosta7" />
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" />
+  <meta property="og:url" content="https://www.instagram.com/phaellacosta7/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="@phaellacosta7 no Instagram" />
+  <meta name="twitter:description" content="Acesse o perfil oficial no Instagram de @phaellacosta7" />
+  <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" />
 
   <style>
     body {
@@ -18,18 +34,18 @@
       color: #fff;
       text-align: center;
     }
-
     .container {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-
-    h1 {
-      font-size: 18px;
+    .insta-logo {
+      width: 60px;
+      height: 60px;
       margin-bottom: 20px;
+      border-radius: 14px;
     }
-
+    h1 { font-size: 18px; margin-bottom: 20px; }
     .loader {
       width: 50px;
       height: 50px;
@@ -38,17 +54,12 @@
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
-
     @keyframes spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
-
-    p {
-      font-size: 14px;
-      margin-top: 15px;
-      opacity: 0.8;
-    }
+    p { font-size: 14px; margin-top: 15px; opacity: 0.8; }
+    .handle { font-size: 15px; color: #c13584; margin-top: 6px; font-weight: bold; }
   </style>
 
   <!-- Facebook Pixel -->
@@ -61,51 +72,36 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-
     fbq('init', '1900486574673194');
     fbq('track', 'PageView');
   </script>
-
   <noscript>
     <img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1900486574673194&ev=PageView&noscript=1"/>
   </noscript>
 
   <script>
-    function enviarEventos() {
-      if (typeof fbq === 'function') {
-        fbq('track', 'ViewContent');
-        fbq('track', 'Lead');
-      }
-    }
-
-    function redirecionarTelegram() {
-      setTimeout(function () {
-
-        // Tenta abrir direto no app
-        window.location.href = "tg://resolve?domain=agathasouzxbot";
-
-        // Fallback para web caso não tenha app
-        setTimeout(function() {
-          window.location.href = "https://t.me/agathasouzxbot";
-        }, 1500);
-
-      }, 3500);
-    }
-
     window.onload = function () {
-      enviarEventos();
-      redirecionarTelegram();
+      setTimeout(function () {
+        if (typeof fbq === 'function') { fbq('track', 'ViewContent'); }
+        setTimeout(function () {
+          if (typeof fbq === 'function') { fbq('track', 'Lead'); }
+          window.location.replace("https://www.instagram.com/phaellacosta7/");
+        }, 300);
+      }, 3200);
     };
   </script>
 
 </head>
-
 <body>
   <div class="container">
+    <img class="insta-logo"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png"
+      alt="Instagram" />
     <h1>Aguarde, estamos te direcionando…</h1>
     <div class="loader"></div>
-    <p>Você será levado ao atendimento exclusivo</p>
+    <p>Você será levado ao perfil oficial no Instagram</p>
+    <span class="handle">@phaellacosta7</span>
   </div>
 </body>
 </html>
