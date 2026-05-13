@@ -6,7 +6,7 @@
   <title>Redirecionando para o Instagram...</title>
 
   <!-- Fallback sem JavaScript -->
-  <meta http-equiv="refresh" content="4;url=https://www.instagram.com/phaellacosta7/" />
+  <meta http-equiv="refresh" content="6;url=https://www.instagram.com/phaellacosta7/" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="@phaellacosta7 no Instagram" />
@@ -81,19 +81,27 @@
         setTimeout(function () {
           if (typeof fbq === 'function') { fbq('track', 'Lead'); }
 
-          // Tenta abrir no app do Instagram
-          var appLink = "instagram://user?username=phaellacosta7";
-          var webLink = "https://www.instagram.com/phaellacosta7/";
+          var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+          var username = "phaellacosta7";
 
-          var iframe = document.createElement("iframe");
-          iframe.style.display = "none";
-          iframe.src = appLink;
-          document.body.appendChild(iframe);
+          if (/android/i.test(userAgent)) {
+            // Android: tenta deep link via iframe
+            var iframe = document.createElement("iframe");
+            iframe.style.display = "none";
+            iframe.src = "instagram://user?username=" + username;
+            document.body.appendChild(iframe);
+            setTimeout(function () {
+              window.location.replace("https://www.instagram.com/" + username + "/");
+            }, 1500);
 
-          // Fallback para web caso o app não abra em 1.5s
-          setTimeout(function () {
-            window.location.replace(webLink);
-          }, 1500);
+          } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            // iOS: Universal Link — iOS intercepta e abre no app automaticamente
+            window.location.replace("https://www.instagram.com/" + username + "/");
+
+          } else {
+            // Desktop ou outros
+            window.location.replace("https://www.instagram.com/" + username + "/");
+          }
 
         }, 300);
       }, 3200);
