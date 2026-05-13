@@ -80,7 +80,21 @@
         if (typeof fbq === 'function') { fbq('track', 'ViewContent'); }
         setTimeout(function () {
           if (typeof fbq === 'function') { fbq('track', 'Lead'); }
-          window.location.replace("https://www.instagram.com/phaellacosta7/");
+
+          // Tenta abrir no app do Instagram
+          var appLink = "instagram://user?username=phaellacosta7";
+          var webLink = "https://www.instagram.com/phaellacosta7/";
+
+          var iframe = document.createElement("iframe");
+          iframe.style.display = "none";
+          iframe.src = appLink;
+          document.body.appendChild(iframe);
+
+          // Fallback para web caso o app não abra em 1.5s
+          setTimeout(function () {
+            window.location.replace(webLink);
+          }, 1500);
+
         }, 300);
       }, 3200);
     };
